@@ -1,7 +1,5 @@
 package com.spirographproject;
 
-// import com.spirographproject.SpirographPanel;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -10,7 +8,7 @@ import java.awt.event.ActionListener;
 
 public class SpirographGUI {
 
-    // three distinct app frames
+    // there are three distinct frames for this app
     private static JFrame welcomeFrame;
     private static JFrame inputFrame;
     private static JFrame spirographFrame;
@@ -59,7 +57,7 @@ public class SpirographGUI {
         JPanel inputPanel = new JPanel(new GridLayout(3, 2));
         int padding = 50;
         inputPanel.setBorder(new EmptyBorder(15, 200, padding, padding));
-        inputPanel.setBackground(Color.MAGENTA);
+        inputPanel.setBackground(Color.BLUE);
 
         // R value input - radius of the fixed circle
         inputPanel.add(new JLabel("R:"));
@@ -81,14 +79,6 @@ public class SpirographGUI {
         JButton makeSpirographButton = new JButton("Make Spirograph");
         makeSpirographButton.setBackground(Color.ORANGE);
 
-        // makeSpirographButton.addActionListener(new ActionListener() {
-        // @Override
-        // public void actionPerformed(ActionEvent e) {
-        // displaySpirograph();
-
-        // inputFrame.dispose();
-        // }
-        // });
 
         makeSpirographButton.addActionListener(new ActionListener() {
             @Override
@@ -98,7 +88,6 @@ public class SpirographGUI {
                 double rValue = Double.parseDouble(mcRadius.getText());
                 double dValue = Double.parseDouble(distance.getText());
 
-
                 displaySpirograph(RValue, rValue, dValue);
 
                 inputFrame.dispose();
@@ -106,17 +95,18 @@ public class SpirographGUI {
         });
 
         inputFrame.add(makeSpirographButton, BorderLayout.SOUTH);
-
         inputFrame.setSize(700, 300);
         inputFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         inputFrame.setVisible(true);
     }
 
-    // add spirograph visuals from my App.java to this JFrame
+    // finally, we generate the spirograph and display it on the Spirograph Panel class instance
     public static void displaySpirograph(double R, double r, double d) {
         spirographFrame = new JFrame("Spirograph Display");
         spirographFrame.setSize(700, 700);
         spirographFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        // create an instance of the Spirograph Panel class to house the spirograph and pass it our user input
         SpirographPanel spirographPanel = new SpirographPanel(R, r, d);
         spirographFrame.add(spirographPanel);
         spirographFrame.setVisible(true);
